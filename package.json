@@ -1,0 +1,35 @@
+{
+  "name": "labotik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deusimarmms/labotik.git"
+  },
+  "keywords": [],
+  "author": "Deusimar Moraes Matos Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deusimarmms/labotik/issues"
+  },
+  "homepage": "https://github.com/deusimarmms/labotik#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+
+    "jquery": "^3.6.0",
+    "jquery-mask-plugin": "^1.14.16"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-image": "^6.3.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
