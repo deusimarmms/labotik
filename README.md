@@ -62,5 +62,4 @@ após a instalação é de extrema importancia que seja executado o comando: (np
 </ul>
 
 <h2  align="center">Observação</h2>
-<p> para carregar os arquivos do projeto é preciso rodar no terminal os comandos  <strong> gulp scripts </strong> e  <strong> gulp styles </strong> pois o gulp ira criar uma pasta dist e dentro dela subpastas do projeto como css e js com os arquivos minificados , o visual do projeto e alguns scripts dependem desse comando para minificar os arquivos e o apontamento das pastas para o carregamento dos funcional do projeto estão  dentro do html está direcionado para essa pasta dist.</p>
-<p> <strong>caso não haja a execução dos comandos o projeto poderá carregar com problemas em scripts e visuais .</strong></p>
+<p> Foram executados testes com relação a pasta dist que é aonde é feito o apontamento dos arquivos minificados , em caso de testes poderá ser excluida para teste a pasta dist e rodar os comandos  gulp styles (Para minificação de arquivos CSS) gulp scripts (Para minificação de scripts) e  imagemin (para otimização de imagens)</p>
