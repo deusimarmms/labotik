@@ -1,3 +1,14 @@
+let clotherJson = [
+  {id:1, name:'Roupa 1', img:'../public/img/roupa-1.png', price:20.19, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:2, name:'Roupa 2', img:'../public/img/roupa-2.png', price:18.00, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:3, name:'Roupa 3', img:'../public/img/roupa-3.png', price:17.45, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:4, name:'Roupa 4', img:'../public/img/roupa-4.png', price:19.77, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:5, name:'Roupa 5', img:'../public/img/roupa-5.png', price:21.43, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:6, name:'Roupa 6', img:'../public/img/roupa-6.png', price:18.55, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:7, name:'Roupa 7', img:'../public/img/roupa-7.png', price:22.36, sizes:['P', 'M', 'G'], description:'LOREM'},
+  {id:8, name:'Roupa 8', img:'../public/img/roupa-8.png', price:22.36, sizes:['P', 'M', 'G'], description:'LOREM'},
+
+];
 /* QUuantidade de itens no modal */
 let cart = [];
 let modalQt = 1;
@@ -177,3 +188,176 @@ function updateCart() {
 function finish() {
   return  c('.cart--finalizar').addEventListener(alert('Preencher os dados do formulario de contato'))
 }
+let textArea = document.querySelector('.text__area')
+
+
+let Validator = {
+    handleSubmit: (event) => {
+        event.preventDefault();
+        let send = true;
+
+        let inputs = form.querySelectorAll('input');
+
+        Validator.clearErrors();
+
+        for (let i = 0; i < inputs.length; i++) {
+            let input = inputs[i];
+            let check = Validator.checkInput(input);
+            if (check !== true) {
+                send = false;
+                Validator.showError(input, check);
+            } else {
+
+            }
+        }
+
+        if (send) {
+            alert('cadastro realizado')
+            form.reset();
+        }
+    },
+
+    
+    showError: (input, error) => {
+        input.style.borderColor = '#FF0000';
+       
+
+        let errorElement = document.createElement('div');
+        errorElement.classList.add('error');
+        errorElement.innerHTML = error;
+
+        input.parentElement.insertBefore(errorElement, input.ElementSibling);
+       
+
+        
+    },
+    clearErrors: () => {
+        let inputs = form.querySelectorAll('input');
+   
+
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].style = '';
+        }
+
+
+        let errorElements = document.querySelectorAll('.error');
+        for (let i = 0; i < errorElements.length; i++) {
+            errorElements[i].remove();
+        }
+    },
+
+
+
+
+
+    checkInput: (input) => {
+        let rules = input.getAttribute('data-rules');
+
+        if (rules !== null) {
+            rules = rules.split('|');
+            for (let k in rules) {
+                let rDetails = rules[k].split('=');
+                switch (rDetails[0]) {
+                    case 'required':
+                        if (input.value == '') {
+                            return 'Campo não pode ser vazio.';
+                        }
+                        break;
+                    case 'min':
+                        if (input.value.length < rDetails[1]) {
+                            return 'Campo tem que ter pelo menos ' + rDetails[1] + ' caractes';
+                        }
+                        break;
+                    case 'mintel':
+                        if (input.value.length < rDetails[1]) {
+                            return 'Telefone Incompleto '  ;
+                        }
+                        break;
+                    case 'email':
+                        if (input.value != '') {
+                            let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            if (!regex.test(input.value.toLowerCase())) {
+                                return 'E-mail digitado não é válido!';
+                            }
+                        }
+                        break;
+                    case 'uf':
+                        if (input.value != '') {
+                            let regex = /^[a-zA-Z]+$/;
+                            if (!regex.test(input.value.toLowerCase())) {
+                                return 'uf invalido';
+                            }
+                        }
+                        break;
+/*                     case 'tel':
+                        if ($('.phone_with_ddd').mask('(00) 0000-0000');) {
+                            let regex = /^(?:\+)[0-9]{2}\s?(?:\()[0-9]{2}(?:\))\s?[0-9]{4,5}(?:-)[0-9]{4}$/;
+                            if (!regex.test(input.value.toLowerCase())) {
+                                return 'Numero de telefone não é valido';
+                            }
+                        }
+                        break; */
+/*                     case 'cep':
+                        if (input.value === '') {
+                            let regex = /^([\d]{2})\.*([\d]{3})-*([\d]{3})/;
+                            if (!regex.test(input.value.toLowerCase())) {
+                                return 'Campo tem que ter pelo menos ' + rDetails[1] + ' caractes com o "-"';
+                            }
+                        }
+                        break; */
+                }
+            }
+        }
+
+        return true;
+    },
+    showError: (input, error) => {
+        input.style.borderColor = '#FF0000';
+
+        let errorElement = document.createElement('div');
+        errorElement.classList.add('error');
+        errorElement.innerHTML = error;
+
+        input.parentElement.insertBefore(errorElement, input.ElementSibling);
+    },
+    clearErrors: () => {
+        let inputs = form.querySelectorAll('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].style = '';
+        }
+
+        let errorElements = document.querySelectorAll('.error');
+        for (let i = 0; i < errorElements.length; i++) {
+            errorElements[i].remove();
+        }
+    }
+};
+/* Jquery mask */
+
+$('.cep').mask('00000-000');
+$('.phone_with_ddd').mask('(00) 0000-00000');
+$('.alpha-no-spaces').mask("A", {
+	translation: {
+		"A": { pattern: /[\w@\-.+]/, recursive: true }
+	}
+});
+let form = document.querySelector('.Validator');
+form.addEventListener('submit', Validator.handleSubmit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
