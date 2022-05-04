@@ -18,7 +18,7 @@ const reload = browserSync.reload
 /* Vendor */
 function tarefasCSS(cb) {
   return gulp
-
+    
     .src("./vendor/**/*.css")
     .pipe(concat("libs.css"))
     .pipe(cssmin())
@@ -97,6 +97,7 @@ gulp.task('serve', function () {
       }
   });
 
+  gulp.watch("*./src/**/").on("change", process); // repete o processo quando alterar algo em src
   gulp.watch("*.html").on("change", reload);
 });
 
@@ -104,9 +105,11 @@ gulp.task('serve', function () {
 
 
 
-exports.default = parallel(tarefasHTML,tarefasCSS,tarefasJS,appJS,styleCSS)
+
 exports.styles = tarefasCSS;
 exports.style = styleCSS;
+const process = series(tarefasHTML,tarefasCSS,tarefasJS,appJS,styleCSS )
+exports.default = process
 exports.scripts = tarefasJS;
 exports.script= appJS;
 exports.imagemin = tarefasImagem
